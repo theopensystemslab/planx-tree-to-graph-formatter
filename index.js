@@ -179,6 +179,8 @@ async function convert(id) {
 
   data.c.forEach(node => parseNode(node, id));
 
+  if (!fs.existsSync("out")) fs.mkdirSync("out");
+
   fs.writeFileSync(
     `out/${id}.json`,
     JSON.stringify(buildFlow({ id, nodes, edges }), null, 2)
